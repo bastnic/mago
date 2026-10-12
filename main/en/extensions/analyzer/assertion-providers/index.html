@@ -173,7 +173,7 @@
       
       <li>
         <a href="../../../../../main/en/guide/getting-started">
-          <span>Getting Started</span>
+          <span>Getting started</span>
         </a>
       </li>
       
@@ -831,6 +831,17 @@ final class IsUserAssertion implements FunctionAssertionProvider
 }
 </code></pre>
 <p>Map keys are callable parameter names such as <code>$value</code>, not local variable names at the call site. Mago resolves the parameter to its actual argument expression. Every mapped fact list must be non-empty.</p>
+<h2 id="receiver-assertions">Receiver assertions</h2>
+<p>A method assertion provider can target the called object with <code>InvocationAssertions::RECEIVER</code>. An unconditional receiver assertion updates the object in the caller's scope even when the method's return value is discarded.</p>
+<pre><code class="language-php">return new InvocationAssertions(
+    assertions: [
+        InvocationAssertions::RECEIVER =&gt; [
+            new TypeAssertion(TypeAssertionKind::IsType, $updatedReceiverType),
+        ],
+    ],
+);
+</code></pre>
+<p>Use receiver assertions only for instance methods. Other SDK implementations should encode the reserved target as <code>$this</code>.</p>
 <p>Return <code>null</code> to delegate to the next matching provider. An empty <code>InvocationAssertions</code> contributes no facts.</p>
 <h2 id="when-assertions-apply">When assertions apply</h2>
 <p><code>InvocationAssertions</code> has three maps:</p>
@@ -860,7 +871,7 @@ final class IsUserAssertion implements FunctionAssertionProvider
 <li><code>Empty</code>, <code>NonEmpty</code>, <code>EmptyCountable</code>, or <code>Countable</code>.</li>
 </ul>
 <h3 id="integer-and-count-assertions">Integer and count assertions</h3>
-<p><code>IntegerAssertion</code> supports exact and minimum collection counts, their negations, direct less/greater comparisons, and comparisons derived from a bound. Count values must be non-negative.</p>
+<p><code>IntegerAssertion</code> supports collection counts, integer comparisons, derived bounds, and string-length bounds. Count values must be non-negative.</p>
 <h3 id="array-key-assertions">Array-key assertions</h3>
 <p><code>ArrayKeyAssertion</code> carries an <code>ArrayKey</code> and one of:</p>
 <ul>
@@ -889,6 +900,10 @@ final class IsUserAssertion implements FunctionAssertionProvider
     
     <li class="doc-toc__item doc-toc__item--lvl2">
       <a class="doc-toc__link" href="#basic-type-guard">Basic type guard</a>
+    </li>
+    
+    <li class="doc-toc__item doc-toc__item--lvl2">
+      <a class="doc-toc__link" href="#receiver-assertions">Receiver assertions</a>
     </li>
     
     <li class="doc-toc__item doc-toc__item--lvl2">

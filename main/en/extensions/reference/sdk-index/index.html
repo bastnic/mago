@@ -173,7 +173,7 @@
       
       <li>
         <a href="../../../../../main/en/guide/getting-started">
-          <span>Getting Started</span>
+          <span>Getting started</span>
         </a>
       </li>
       
@@ -867,7 +867,7 @@
 </tbody></table>
 <p>Targets are <code>FunctionTarget</code> with <code>FunctionTargetKind</code>, or <code>MethodTarget</code>. See <a href="../../../../../main/en/extensions/analyzer/return-types-and-callable-signatures">Return types and callable signatures</a>.</p>
 <h2 id="assertions">Assertions</h2>
-<p><code>FunctionAssertionProvider</code>, <code>MethodAssertionProvider</code>, and <code>AssertionProviderContext</code> produce <code>InvocationAssertions</code>.</p>
+<p><code>FunctionAssertionProvider</code>, <code>MethodAssertionProvider</code>, and <code>AssertionProviderContext</code> produce <code>InvocationAssertions</code>. Method providers can use <code>InvocationAssertions::RECEIVER</code> to assert facts about the called object.</p>
 <p>The assertion value families are:</p>
 <ul>
 <li><code>Assertion\TypeAssertion</code> and <code>TypeAssertionKind</code>;</li>
@@ -894,6 +894,7 @@
 <tr><td style="text-align: left"><code>ClassLikeAnalysisHook</code></td><td style="text-align: left"><code>ClassLikeTarget</code> descendant declarations</td></tr>
 </tbody></table>
 <p>All receive <code>NodeAnalysisContext</code>. See <a href="../../../../../main/en/extensions/analyzer/targeted-analysis-hooks">Targeted analysis hooks</a>.</p>
+<p><code>VariableDefinedness</code> reports whether a local is defined, possibly defined, or undefined before a targeted node.</p>
 <h2 id="entry-points-and-filters">Entry points and filters</h2>
 <p><code>AttributedEntryPoint</code>, <code>ClassTarget</code>, and <code>MethodTarget</code> describe native framework entry points. <code>IssueFilterHook</code>, <code>IssueFilterContext</code>, and <code>IssueFilterDecision</code> implement targeted last-resort filtering. See <a href="../../../../../main/en/extensions/analyzer/entry-points-and-issue-filtering">Entry points and issue filtering</a>.</p>
 <h2 id="analysis-results-and-references">Analysis results and references</h2>
